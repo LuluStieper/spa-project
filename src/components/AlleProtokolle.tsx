@@ -3,32 +3,38 @@ import { ProtokollResource } from "../Resources";
 import { getAlleProtokolle } from "../backend/api";
 import { ProtokollDescription } from "./ProtokollDescription";
 import { LoadingIndicator } from "./LoadingIndicator";
+import { Link } from "react-router-dom";
 
 export function AlleProtokolle() {
+    const [alleProtokolle, setAlleProtokolle] = useState<ProtokollResource[] | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const [alleProtokolle, setProtokolle] = useState<ProtokollResource[] | null>(null);
-
-    async function load() {
-        try {
-            const alleProtokolle = await getAlleProtokolle();
-            setProtokolle(alleProtokolle);
-        } catch (error) {
-            console.error("Protokolle konnten nicht geladen werden");
+    useEffect(() => {
+        async function load() {
+            try {
+                const protokolle = await getAlleProtokolle();
+                setAlleProtokolle(protokolle);
+                setIsLoading(false);
+            } catch (error) { 
+                console.error("Protokolle konnten nicht geladen werden", error);
+            } 
         }
-    }
+        load();
+    }, []); 
 
-    useEffect(() => { 
-        load(); }, 
-        []
-    );
-
-    if (!alleProtokolle) {
-        return <LoadingIndicator/>
+    if (isLoading) {
+        return <LoadingIndicator />;
     }
 
     return (
         <div>
-            {alleProtokolle.map((p) => ( <ProtokollDescription key={p.id} protokoll={p}></ProtokollDescription> ))}
+            {alleProtokolle!.map((p) => (
+                <div>
+                    <ProtokollDescription protokoll={p} key={p.id} />
+                    <Link to={`/protokoll/${p.id}`}>Protokoll öffnen</Link>
+                </div>
+            ))}
         </div>
     );
+    
 }
