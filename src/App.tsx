@@ -11,18 +11,19 @@ import { PageEintrag } from './components/PageEintrag';
 import { PageAdmin } from './components/PageAdmin';
 import { PagePrefs } from './components/PagePrefs';
 import React from 'react';
+import { Header } from './components/Header';
 
 function App() {
 
   const [selectedProtokoll, setSelectedProtokoll] = useState<ProtokollResource | null>(null);
 
-
-
-
   return (
     <React.StrictMode>
     <BrowserRouter>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
+
+      <Header></Header>
+
       <Routes>
         <Route path="/" element={<PageIndex />}/>
         <Route path="/protokoll/:protokollId" element={<PageProtokoll />}/>
