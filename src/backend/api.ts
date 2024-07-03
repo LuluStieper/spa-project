@@ -49,12 +49,31 @@ export async function getProtokoll(protokollId: string): Promise<ProtokollResour
         try {
             const response = await fetch(`https://localhost:3000/protokoll/${protokollId}`);
             if (!response.ok) {
-                throw new Error(`Fehler beim Laden der Protokolle: ${response.statusText}`);
+                throw new Error(`Fehler beim Laden des Protokolles: ${response.statusText}`);
             }
             const data: ProtokollResource = await response.json();
             return data;
         } catch (error) {
-            console.error("Fehler beim Laden der Protokolle:", error);
+            console.error("Fehler beim Laden des Protokolles:", error);
+            throw error;
+        }
+    }
+}
+
+export async function getEintrag(eintragId: string): Promise<EintragResource> {
+    if (process.env.REACT_APP_REAL_FETCH!=='true') {
+        await new Promise(r => setTimeout(r, 700));
+        return Promise.resolve(eintraege[0]);
+    } else {
+        try {
+            const response = await fetch(`https://localhost:3000/eintrag/${eintragId}`);
+            if (!response.ok) {
+                throw new Error(`Fehler beim Laden des Eintrags: ${response.statusText}`);
+            }
+            const data: EintragResource = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Fehler beim Laden des Eintrags:", error);
             throw error;
         }
     }

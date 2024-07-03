@@ -26,7 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PageIndex />}/>
         <Route path="/protokoll/:protokollId" element={<PageProtokoll />}/>
-        <Route path="/eintrag/:eintragId"element={<PageEintrag />}/>
+        <Route path="/eintraege/:eintragId"element={<PageEintrag />}/>
         <Route path="/admin" element={<PageAdmin />}/>
         <Route path="/prefs" element={<PagePrefs />}/>
         <Route path="*" element={<PageIndex />} />

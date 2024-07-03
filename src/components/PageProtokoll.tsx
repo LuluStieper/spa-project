@@ -36,7 +36,7 @@ export function PageProtokoll() {
     return (
         <div>
             <ProtokollDescription protokoll={protokoll} />
-            <Link to={`/eintraege/${protokoll.id}`}>Alle EIntraege</Link>
+            <Link to={`/eintraege/${protokoll.id}`}>Eintrag ansehen</Link>
         </div>
     );
 }
