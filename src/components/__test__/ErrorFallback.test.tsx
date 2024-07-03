@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ErrorFallback from '../ErrorFallback';
-import Bomb from './Bomb';
 import { ErrorBoundary } from 'react-error-boundary';
+import { Bomb } from './Bomb';
 
 const orgLog = console.log;
 const orgError = console.error;

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { ProtokollResource } from "../Resources";
 import { getAlleProtokolle } from "../backend/api";
-import LoadingIndicator from "./LoadingIndicator";
 import { ProtokollDescription } from "./ProtokollDescription";
+import { LoadingIndicator } from "./LoadingIndicator";
 
 export function AlleProtokolle() {
 
