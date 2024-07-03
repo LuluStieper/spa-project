@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { EintragResource } from "../Resources";
 import { getEintrag } from "../backend/api";
 import { LoadingIndicator } from "./LoadingIndicator";
@@ -34,9 +34,9 @@ export function PageEintrag() {
     }
 
     return (
-        <div>
+        <div className="container mt-4">
             <Eintrag eintrag={eintrag}></Eintrag>
-           
+            <Link to={`/protokoll/${eintrag.protokoll}`}  className="btn btn-primary mt-2">Zurück zum Protokoll</Link>
         </div>
     );
 }

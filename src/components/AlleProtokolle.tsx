@@ -27,14 +27,22 @@ export function AlleProtokolle() {
     }
 
     return (
-        <div>
-            {alleProtokolle!.map((p) => (
-                <div>
-                    <ProtokollDescription protokoll={p} key={p.id} />
-                    <Link to={`/protokoll/${p.id}`}>Protokoll öffnen</Link>
+        <div className="container mt-4">
+        <div className="row">
+          {alleProtokolle!.map((p) => (
+            <div key={p.id} className="col-md-4 mb-4">
+              <div className="card">
+                <div className="card-body">
+                  <ProtokollDescription protokoll={p} />
+                  <Link to={`/protokoll/${p.id}`} className="btn btn-primary mt-2">
+                    Details
+                  </Link>
                 </div>
-            ))}
+              </div>
+            </div>
+          ))}
         </div>
+      </div>
     );
     
 }

@@ -1,9 +1,8 @@
 // import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ProtokollResource } from './Resources';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorFallback from './components/ErrorFallback';
-import { AlleProtokolle } from './components/AlleProtokolle';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { PageIndex } from './components/PageIndex';
 import { PageProtokoll } from './components/PageProtokoll';
@@ -27,7 +26,8 @@ function App() {
       <Routes>
         <Route path="/" element={<PageIndex />}/>
         <Route path="/protokoll/:protokollId" element={<PageProtokoll />}/>
-        <Route path="/eintraege/:eintragId"element={<PageEintrag />}/>
+        <Route path="/eintraege/:protokollId"element={<PageEintrag />}/>
+        <Route path="/eintrag/:eintragId"element={<PageEintrag />}/>
         <Route path="/admin" element={<PageAdmin />}/>
         <Route path="/prefs" element={<PagePrefs />}/>
         <Route path="*" element={<PageIndex />} />

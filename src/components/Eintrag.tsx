@@ -1,48 +1,43 @@
-import { EintragResource, ProtokollResource } from "../Resources";
+import { EintragResource } from "../Resources";
 
-export function Eintrag (
-    props:  { eintrag: EintragResource }
-) {
-    const eintrag = props.eintrag;
+export function Eintrag(props: { eintrag: EintragResource }) {
+  const eintrag = props.eintrag;
 
-    return (
-        <div>
-
-            <table>
-                <caption><b>Eintrag für {eintrag.protokoll}</b></caption>
-                <tbody>
-                    <tr>
-                        <th>Getraenk:</th>
-                        <td>{eintrag.getraenk}</td>
-                    </tr>
-                    <tr>
-                        <th>Menge:</th>
-                        <td>{eintrag.menge}</td>
-                    </tr>
-                    <tr>
-                        <th>Kommentar:</th>
-                        <td>{eintrag.kommentar}</td>
-                    </tr>
-                    <tr>
-                        <th>Ersteller:</th>
-                        <td>{eintrag.ersteller}</td>
-                    </tr>
-                    <tr>
-                        <th>Erstellername:</th>
-                        <td>{eintrag.erstellerName}</td>
-                    </tr>
-                    <tr>
-                        <th>Erstellt am:</th>
-                        <td>{eintrag.createdAt}</td>
-                    </tr>
-                    <tr>
-                        <th>Protokoll:</th>
-                        <td>{eintrag.protokoll}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-
-        </div>
-    )
+  return (
+    <div className="container mt-3">
+      <table className="table table-striped">
+        <caption className="caption-top"><b>Eintrag für {eintrag.protokoll}</b></caption>
+        <tbody>
+          <tr>
+            <th scope="row" className="col-md-3">Getränk:</th>
+            <td className="col-md-9">{eintrag.getraenk}</td>
+          </tr>
+          <tr>
+            <th scope="row">Menge:</th>
+            <td>{eintrag.menge}</td>
+          </tr>
+          <tr>
+            <th scope="row">Kommentar:</th>
+            <td>{eintrag.kommentar}</td>
+          </tr>
+          <tr>
+            <th scope="row">Ersteller:</th>
+            <td>{eintrag.ersteller}</td>
+          </tr>
+          <tr>
+            <th scope="row">Erstellername:</th>
+            <td>{eintrag.erstellerName}</td>
+          </tr>
+          <tr>
+            <th scope="row">Erstellt am:</th>
+            <td>{eintrag.createdAt}</td>
+          </tr>
+          <tr>
+            <th scope="row">Protokoll:</th>
+            <td>{eintrag.protokoll}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  )
 }
