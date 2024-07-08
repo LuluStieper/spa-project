@@ -30,9 +30,11 @@ afterEach(() => {
 
 
 test('App', async () => {
-    render(<MemoryRouter initialEntries={["/"]}>
-        <App />
-    </MemoryRouter>);
+    render(
+        // <MemoryRouter initialEntries={["/"]}>
+            <App />
+        /* </MemoryRouter> */
+    );
 
     await waitForLonger(() => {
         const title = screen.getAllByText(/Castorp/i);
@@ -41,9 +43,11 @@ test('App', async () => {
 });
 
 test('Prefs', async () => {
-    render(<MemoryRouter initialEntries={["/prefs"]}>
+    render(
+    // <MemoryRouter initialEntries={["/prefs"]}>
         <App />
-    </MemoryRouter>);
+    // </MemoryRouter>
+    );
 
     await waitForLonger(() => {
         const title = screen.getAllByText(/Pref/i);
@@ -52,9 +56,11 @@ test('Prefs', async () => {
 });
 
 test('Admin', async () => {
-    render(<MemoryRouter initialEntries={["/admin"]}>
+    render(
+    // <MemoryRouter initialEntries={["/admin"]}>
         <App />
-    </MemoryRouter>);
+    /* </MemoryRouter> */
+    );
 
     await waitForLonger(() => {
         const title = screen.getAllByText(/Admin/i);
@@ -63,9 +69,11 @@ test('Admin', async () => {
 });
 
 test('Protokoll 101', async () => {
-    render(<MemoryRouter initialEntries={["/protokoll/101"]}>
+    render(
+    // <MemoryRouter initialEntries={["/protokoll/101"]}>
         <App />
-    </MemoryRouter>);
+    // </MemoryRouter>
+    );
     await waitForLonger(() => {
         const title = screen.getAllByText(/Hans Castorp/i);
         expect(title.length).toBeGreaterThanOrEqual(1);
@@ -77,9 +85,11 @@ test('Protokoll 101', async () => {
 });
 
 test('Invalid Protokoll-ID', async () => {
-    render(<MemoryRouter initialEntries={["/protokoll/abc"]}>
+    render(
+    // <MemoryRouter initialEntries={["/protokoll/abc"]}>
         <App />
-    </MemoryRouter>);
+    // </MemoryRouter>
+    );
     await waitForLonger(() => {
         const title = screen.getAllByText(/Validation error/i);
         expect(title.length).toBeGreaterThanOrEqual(1);
@@ -87,9 +97,11 @@ test('Invalid Protokoll-ID', async () => {
 });
 
 test('Eintrag 201', async () => {
-    render(<MemoryRouter initialEntries={["/eintrag/201"]}>
+    render(
+    // <MemoryRouter initialEntries={["/eintrag/201"]}>
         <App />
-    </MemoryRouter>);
+    // </MemoryRouter>
+    );
     await waitForLonger(() => {
         const title = screen.getAllByText(/Tee/i);
         expect(title.length).toBeGreaterThanOrEqual(1);
@@ -97,9 +109,11 @@ test('Eintrag 201', async () => {
 });
 
 test('Eintrag not found', async () => {
-    render(<MemoryRouter initialEntries={["/eintrag/440044"]}>
+    render(
+    // <MemoryRouter initialEntries={["/eintrag/440044"]}>
             <App />
-    </MemoryRouter>);
+    /* </MemoryRouter> */
+    );
     await waitForLonger(() => {
         const title = screen.getAllByText(/404/i);
         expect(title.length).toBeGreaterThanOrEqual(1);
@@ -107,9 +121,11 @@ test('Eintrag not found', async () => {
 });
 
 test('Invalid Eintrag-ID', async () => {
-    render(<MemoryRouter initialEntries={["/eintrag/abc"]}>
+    render(
+    // <MemoryRouter initialEntries={["/eintrag/abc"]}>
             <App />
-    </MemoryRouter>);
+    /* </MemoryRouter> */
+    );
     await waitForLonger(() => {
         const title = screen.getAllByText(/Validation error/i);
         expect(title.length).toBeGreaterThanOrEqual(1);

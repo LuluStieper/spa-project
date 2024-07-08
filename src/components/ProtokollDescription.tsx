@@ -9,7 +9,7 @@ export function ProtokollDescription (
         <div>
 
             <table>
-                <caption><b>Protokoll für {protokoll.patient}</b></caption>
+                <caption className="caption-top"><b>Protokoll für {protokoll.patient}</b></caption>
                 <tbody>
                     {/* <tr>
                         <th>Patient:</th>
