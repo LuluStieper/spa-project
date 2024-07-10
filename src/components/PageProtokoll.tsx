@@ -7,12 +7,14 @@ import { LoadingIndicator } from "./LoadingIndicator";
 import { Eintrag } from "./Eintrag";
 import { Protokoll } from "./Protokoll";
 import { Eintraege } from "./Eintraege";
+import { useErrorBoundary } from "react-error-boundary";
 
 export function PageProtokoll() {
     const { protokollId } = useParams<{ protokollId: string }>();
     const [protokoll, setProtokoll] = useState<ProtokollResource | null>(null);
     const [eintraege, setEintraege] = useState<EintragResource[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const {showBoundary} = useErrorBoundary();
 
     useEffect(() => {
         async function loadProtokoll() {
@@ -27,7 +29,7 @@ export function PageProtokoll() {
                     setIsLoading(false);
                 } 
             } catch (error) { 
-                console.error("Protokoll konnte nicht geladen werden", error);
+                showBoundary(error);
             } 
         }
         loadProtokoll();

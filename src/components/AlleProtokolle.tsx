@@ -4,10 +4,12 @@ import { getAlleProtokolle } from "../backend/api";
 import { ProtokollDescription } from "./ProtokollDescription";
 import { LoadingIndicator } from "./LoadingIndicator";
 import { Link } from "react-router-dom";
+import { useErrorBoundary } from "react-error-boundary";
 
 export function AlleProtokolle() {
     const [alleProtokolle, setAlleProtokolle] = useState<ProtokollResource[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const {showBoundary} = useErrorBoundary();
 
     useEffect(() => {
         async function load() {
@@ -16,7 +18,7 @@ export function AlleProtokolle() {
                 setAlleProtokolle(protokolle);
                 setIsLoading(false);
             } catch (error) { 
-                console.error("Protokolle konnten nicht geladen werden", error);
+              showBoundary(error);
             } 
         }
         load();
@@ -44,5 +46,4 @@ export function AlleProtokolle() {
         </div>
       </div>
     );
-    
 }

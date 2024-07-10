@@ -4,11 +4,13 @@ import { EintragResource } from "../Resources";
 import { getEintrag } from "../backend/api";
 import { LoadingIndicator } from "./LoadingIndicator";
 import { Eintrag } from "./Eintrag";
+import { useErrorBoundary } from "react-error-boundary";
 
 export function PageEintrag() {
     const { eintragId } = useParams<{ eintragId: string }>();
     const [eintrag, setEintrag] = useState<EintragResource | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const {showBoundary} = useErrorBoundary();
 
     useEffect(() => {
         async function loadProtokoll() {
@@ -19,7 +21,7 @@ export function PageEintrag() {
                     setIsLoading(false);
                 } 
             } catch (error) { 
-                console.error("Protokoll konnte nicht geladen werden", error);
+                showBoundary(error);
             } 
         }
         loadProtokoll();

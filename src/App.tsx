@@ -18,23 +18,23 @@ function App() {
 
   return (
     <React.StrictMode>
-    <BrowserRouter>
+
       <ErrorBoundary FallbackComponent={ErrorFallback}>
 
-      <Header></Header>
+        <Header></Header>
 
-      <Routes>
-        <Route path="/" element={<PageIndex />}/>
-        <Route path="/protokoll/:protokollId" element={<PageProtokoll />}/>
-        <Route path="/eintraege/:protokollId"element={<PageEintrag />}/>
-        <Route path="/eintrag/:eintragId"element={<PageEintrag />}/>
-        <Route path="/admin" element={<PageAdmin />}/>
-        <Route path="/prefs" element={<PagePrefs />}/>
-        <Route path="*" element={<PageIndex />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<PageIndex />} />
+          <Route path="/protokoll/:protokollId" element={<PageProtokoll />} />
+          <Route path="/eintraege/:protokollId" element={<PageEintrag />} />
+          <Route path="/eintrag/:eintragId" element={<PageEintrag />} />
+          <Route path="/admin" element={<PageAdmin />} />
+          <Route path="/prefs" element={<PagePrefs />} />
+          <Route path="*" element={<PageIndex />} />
+        </Routes>
       </ErrorBoundary>
-    </BrowserRouter>
-  </React.StrictMode>
+
+    </React.StrictMode>
   );
 
 }

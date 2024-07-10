@@ -3,13 +3,20 @@
 import { EintragResource, ProtokollResource } from "../Resources";
 import { eintraege, protokolle } from "./testdata";
 
+const SERVER = process.env.REACT_APP_API_SERVER_URL || "https://localhost:3001"
+
 export async function getAlleProtokolle(): Promise<ProtokollResource[]> {
     if (process.env.REACT_APP_REAL_FETCH!=='true') {
         await new Promise(r => setTimeout(r, 700));
         return Promise.resolve(protokolle);
     } else {
         try {
-            const response = await fetch(`https://localhost:3000/protokoll`);
+            const response = await fetch(`${SERVER}/api/protokoll/alle`
+                // ,
+                // {
+                //     credentials: "include"
+                // }
+            );
             if (!response.ok) {
                 throw new Error(`Fehler beim Laden der Protokolle: ${response.statusText}`);
             }
@@ -28,7 +35,7 @@ export async function getAlleEintraege(protokollId: string): Promise<EintragReso
         return Promise.resolve(eintraege);
     } else {
         try {
-            const response = await fetch(`https://localhost:3000/eintraege/${protokollId}`);
+            const response = await fetch(`${SERVER}/api/protokoll/${protokollId}/eintraege`);
             if (!response.ok) {
                 throw new Error(`Fehler beim Laden der Protokolle: ${response.statusText}`);
             }
@@ -47,7 +54,7 @@ export async function getProtokoll(protokollId: string): Promise<ProtokollResour
         return Promise.resolve(protokolle[0]);
     } else {
         try {
-            const response = await fetch(`https://localhost:3000/protokoll/${protokollId}`);
+            const response = await fetch(`${SERVER}/api/protokoll/${protokollId}`);
             if (!response.ok) {
                 throw new Error(`Fehler beim Laden des Protokolles: ${response.statusText}`);
             }
@@ -66,7 +73,7 @@ export async function getEintrag(eintragId: string): Promise<EintragResource> {
         return Promise.resolve(eintraege[0]);
     } else {
         try {
-            const response = await fetch(`https://localhost:3000/eintrag/${eintragId}`);
+            const response = await fetch(`${SERVER}/api/eintrag/${eintragId}`);
             if (!response.ok) {
                 throw new Error(`Fehler beim Laden des Eintrags: ${response.statusText}`);
             }

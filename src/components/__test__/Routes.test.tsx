@@ -22,6 +22,7 @@ beforeEach(() => {
     console.error = () => { };
     mockFetch(); // nicht eingeloggt, Einloggen prinzipiell möglich aber hier nicht getestet.
 });
+
 afterEach(() => {
     cleanup(); // Löschen des internen React-Status, damit wirklich alles neu gerendert wird und nichts doppelt erscheint.
     console.log = orgLog;
@@ -31,9 +32,9 @@ afterEach(() => {
 
 test('App', async () => {
     render(
-        // <MemoryRouter initialEntries={["/"]}>
+        <MemoryRouter initialEntries={["/"]}>
             <App />
-        /* </MemoryRouter> */
+        </MemoryRouter>
     );
 
     await waitForLonger(() => {
@@ -44,9 +45,9 @@ test('App', async () => {
 
 test('Prefs', async () => {
     render(
-    // <MemoryRouter initialEntries={["/prefs"]}>
+    <MemoryRouter initialEntries={["/prefs"]}>
         <App />
-    // </MemoryRouter>
+    </MemoryRouter>
     );
 
     await waitForLonger(() => {
@@ -57,9 +58,9 @@ test('Prefs', async () => {
 
 test('Admin', async () => {
     render(
-    // <MemoryRouter initialEntries={["/admin"]}>
+     <MemoryRouter initialEntries={["/admin"]}>
         <App />
-    /* </MemoryRouter> */
+     </MemoryRouter> 
     );
 
     await waitForLonger(() => {
@@ -70,64 +71,64 @@ test('Admin', async () => {
 
 test('Protokoll 101', async () => {
     render(
-    // <MemoryRouter initialEntries={["/protokoll/101"]}>
+     <MemoryRouter initialEntries={["/protokoll/101"]}>
         <App />
-    // </MemoryRouter>
+     </MemoryRouter>
     );
     await waitForLonger(() => {
-        const title = screen.getAllByText(/Hans Castorp/i);
+        const title = screen.getAllByText(/Protokoll für Hans Castorp/i);
         expect(title.length).toBeGreaterThanOrEqual(1);
     });
     await waitForLonger(() => {
-        const title = screen.getAllByText(/Wasser/i);
+        const title = screen.getAllByText(/501/i);
         expect(title.length).toBeGreaterThanOrEqual(1);
     });
 });
 
 test('Invalid Protokoll-ID', async () => {
     render(
-    // <MemoryRouter initialEntries={["/protokoll/abc"]}>
+    <MemoryRouter initialEntries={["/protokoll/abc"]}>
         <App />
-    // </MemoryRouter>
+    </MemoryRouter>
     );
     await waitForLonger(() => {
-        const title = screen.getAllByText(/Validation error/i);
+        const title = screen.getAllByText(/Something went wrong:/i);
         expect(title.length).toBeGreaterThanOrEqual(1);
     });
 });
 
 test('Eintrag 201', async () => {
     render(
-    // <MemoryRouter initialEntries={["/eintrag/201"]}>
+     <MemoryRouter initialEntries={["/eintrag/201"]}>
         <App />
-    // </MemoryRouter>
+    </MemoryRouter>
     );
     await waitForLonger(() => {
-        const title = screen.getAllByText(/Tee/i);
+        const title = screen.getAllByText(/Eintrag für 101/i);
         expect(title.length).toBeGreaterThanOrEqual(1);
     });
 });
 
 test('Eintrag not found', async () => {
     render(
-    // <MemoryRouter initialEntries={["/eintrag/440044"]}>
+    <MemoryRouter initialEntries={["/eintrag/440044"]}>
             <App />
-    /* </MemoryRouter> */
+     </MemoryRouter> 
     );
     await waitForLonger(() => {
-        const title = screen.getAllByText(/404/i);
+        const title = screen.getAllByText(/Something went wrong:/i);
         expect(title.length).toBeGreaterThanOrEqual(1);
     });
 });
 
 test('Invalid Eintrag-ID', async () => {
     render(
-    // <MemoryRouter initialEntries={["/eintrag/abc"]}>
+     <MemoryRouter initialEntries={["/eintrag/abc"]}>
             <App />
-    /* </MemoryRouter> */
+    </MemoryRouter> 
     );
     await waitForLonger(() => {
-        const title = screen.getAllByText(/Validation error/i);
+        const title = screen.getAllByText(/Something went wrong:/i);
         expect(title.length).toBeGreaterThanOrEqual(1);
     });
 });
